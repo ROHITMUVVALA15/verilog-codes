@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 06.05.2026 22:04:59
+// Create Date: 06.05.2026 22:13:07
 // Design Name: 
-// Module Name: tb_half_adder_dataflow
+// Module Name: half_subtractor_behav
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,15 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
- module tb_half_adder_dataflow();
-reg a,b;
-wire diff,borrow;
-half_subtractor_dataflow uut(.a(a),.b(b),.diff(diff),.borrow(borrow));
-initial begin
-$monitor("At time=%0t ,a=%b,b=%b,diff=%b,borrow=%b",$time,a,b,diff,borrow);
-a=0;b=0;#10;
-a=0;b=1;#10;
-a=1;b=0;#10;
-a=1;b=1;#10;
+module half_subtractor_behav(input a,
+input b,
+output reg diff,
+output reg borrow
+);
+always@(*)
+begin
+{borrow,diff}=a-b;
 end
 endmodule
