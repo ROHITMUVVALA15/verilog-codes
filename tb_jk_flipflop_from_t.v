@@ -1,0 +1,46 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 19.05.2026 11:14:00
+// Design Name: 
+// Module Name: tb_jk_flipflop_from_t
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module tb_jk_flipflop_from_t(
+
+    );
+    reg clk;
+    reg rst;
+    reg j;
+    reg k;
+    wire q;
+    wire q_bar;
+    
+    jk_flipflop_from_t dut (.clk(clk),.rst(rst),.j(j),.k(k),.q(q),.q_bar(q_bar));
+    initial clk=0;
+    always #5 clk=~clk;
+    initial begin
+    rst=1;j=0;k=0;
+    #10 rst=0;
+    $monitor("At time=%0t,j==%b,k=%b,q=%b,q_bar=%b",$time,j,k,q,q_bar);
+    j=1;k=0;#10;
+    j=0;k=0;#10;
+    j=0;k=1;#10;
+    j=1;k=1;#10;
+    $finish;
+    end
+endmodule
